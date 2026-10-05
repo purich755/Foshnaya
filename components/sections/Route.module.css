@@ -1,0 +1,137 @@
+.section {
+  position: relative;
+  background: var(--night);
+  padding: clamp(84px, 10vw, 140px) 0;
+}
+.inner {
+  position: relative;
+}
+.sign {
+  font-size: clamp(30px, 5vw, 76px);
+  margin: 0 0 clamp(32px, 4vw, 56px);
+}
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+}
+.mapBox {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(244, 234, 218, 0.1),
+    0 40px 60px -30px rgba(0, 0, 0, 0.8);
+}
+.map {
+  width: 100%;
+  height: auto;
+}
+.street {
+  font-family: var(--f-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: rgba(244, 234, 218, 0.55);
+}
+.streetHi {
+  fill: var(--broth);
+  font-size: 12.5px;
+  font-weight: 500;
+}
+.metroM {
+  font-family: var(--f-sign), sans-serif;
+  font-size: 15px;
+  fill: #fff;
+}
+.metroLabel {
+  font-family: var(--f-mono), monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  fill: var(--rice);
+  paint-order: stroke;
+  stroke: #1b1511;
+  stroke-width: 4px;
+}
+.dist {
+  font-family: var(--f-mono), monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  fill: var(--turmeric);
+}
+.pinText {
+  font-family: var(--f-viet), sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  fill: var(--turmeric);
+}
+.north {
+  font-family: var(--f-mono), monospace;
+  font-size: 12px;
+  fill: var(--ink-faint);
+}
+
+.dl {
+  display: grid;
+  gap: 22px;
+  margin: 0;
+}
+.dl dt {
+  font-family: var(--f-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 4px;
+}
+.dl dd {
+  margin: 0;
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.35;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+}
+.dl a {
+  text-decoration: underline;
+  text-decoration-color: rgba(244, 234, 218, 0.3);
+  text-underline-offset: 5px;
+}
+.dl a:hover {
+  color: var(--turmeric);
+  text-decoration-color: var(--turmeric);
+}
+.status {
+  font-size: 12px !important;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+.fine {
+  margin-top: 22px;
+  font-size: 14px;
+  color: var(--ink-dim);
+}
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .mapBox {
+    margin-inline: calc(var(--gutter) * -1);
+    border-radius: 0;
+  }
+  .map {
+    width: 100%;
+  }
+}

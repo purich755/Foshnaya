@@ -1,0 +1,47 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--f-mono), monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  min-width: 12ch;
+}
+.dot {
+  position: relative;
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #8a7d70;
+}
+.root[data-state='open'] .dot {
+  background: #3fae5d;
+}
+.root[data-state='open'] .dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid #3fae5d;
+  animation: pulse 1.8s var(--ease) infinite;
+}
+.root[data-state='closing'] .dot {
+  background: var(--broth);
+}
+.root[data-state='closed'] .dot {
+  background: var(--chili);
+}
+.root[data-state='pending'] .dot {
+  background: var(--broth);
+}
+.compact {
+  font-size: 11px;
+}
+@keyframes pulse {
+  0% { transform: scale(0.5); opacity: 0.9; }
+  100% { transform: scale(1.6); opacity: 0; }
+}

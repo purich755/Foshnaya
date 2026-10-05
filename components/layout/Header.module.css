@@ -1,0 +1,155 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 110;
+  height: var(--header-h);
+  transition:
+    transform 0.45s var(--ease),
+    background-color 0.3s,
+    box-shadow 0.3s;
+}
+.solid {
+  background: rgba(21, 17, 14, 0.92);
+  box-shadow: inset 0 -1px 0 var(--turmeric);
+}
+.hide {
+  transform: translateY(-100%);
+}
+.inner {
+  height: 100%;
+  max-width: calc(var(--maxw) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.home {
+  flex: none;
+}
+.nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: clamp(14px, 2vw, 30px);
+  font-size: 15px;
+}
+.nav a {
+  position: relative;
+  padding: 6px 0;
+  color: var(--ink-dim);
+  transition: color 0.2s;
+}
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--turmeric);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.35s var(--ease);
+}
+.nav a:hover {
+  color: var(--rice);
+}
+.nav a:hover::after {
+  transform: scaleX(1);
+}
+.right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: auto;
+}
+.call {
+  font-weight: 600;
+  font-size: 15px;
+  padding: 9px 16px;
+  border: 1.5px solid rgba(244, 234, 218, 0.5);
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+.call:hover {
+  background: var(--rice);
+  color: var(--night);
+}
+.burger {
+  display: none;
+  width: 46px;
+  height: 46px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+.burger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--rice);
+  transition: transform 0.35s var(--ease);
+}
+.burger[aria-expanded='true'] span:first-child {
+  transform: translateY(4.5px) rotate(45deg);
+}
+.burger[aria-expanded='true'] span:last-child {
+  transform: translateY(-4.5px) rotate(-45deg);
+}
+
+/* полноэкранное меню — под шапкой, чтобы бургер оставался доступен */
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 105;
+  background: var(--ochre);
+  color: var(--night);
+  padding: calc(var(--header-h) + 28px) var(--gutter) 32px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.mnav {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mnav a {
+  font-family: var(--f-sign), sans-serif;
+  text-transform: uppercase;
+  font-size: clamp(34px, 10vw, 64px);
+  line-height: 1.12;
+}
+.mfoot {
+  position: relative;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+.mfoot p {
+  font-size: 13px;
+}
+
+@media (max-width: 1080px) {
+  .nav {
+    display: none;
+  }
+  .burger {
+    display: flex;
+  }
+  .status {
+    display: none;
+  }
+}
+@media (max-width: 560px) {
+  .call {
+    display: none;
+  }
+}

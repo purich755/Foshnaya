@@ -1,0 +1,69 @@
+.cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 150;
+  pointer-events: none;
+  display: none;
+}
+html[data-cursor-on] .cursor {
+  display: block;
+}
+.dot {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--broth);
+  mix-blend-mode: difference;
+  display: grid;
+  place-items: center;
+  transition:
+    width 0.35s var(--ease),
+    height 0.35s var(--ease),
+    left 0.35s var(--ease),
+    top 0.35s var(--ease),
+    background-color 0.25s,
+    opacity 0.25s;
+}
+.label {
+  font-family: var(--f-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--night);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.cursor[data-mode='view'] .dot {
+  width: 72px;
+  height: 72px;
+  left: -36px;
+  top: -36px;
+  mix-blend-mode: normal;
+  background: var(--broth);
+}
+.cursor[data-mode='view'] .label {
+  opacity: 1;
+}
+.cursor[data-mode='hit'] .dot {
+  width: 38px;
+  height: 38px;
+  left: -19px;
+  top: -19px;
+  background: var(--broth);
+}
+.cursor[data-mode='grab'] .dot {
+  width: 24px;
+  height: 24px;
+  left: -12px;
+  top: -12px;
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--broth);
+  mix-blend-mode: normal;
+}
+.cursor[data-mode='out'] .dot {
+  opacity: 0;
+}

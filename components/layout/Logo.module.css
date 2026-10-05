@@ -1,0 +1,18 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  background: #a3160e; /* темнее вывесочного — мелкий жёлтый текст проходит AA */
+  color: var(--turmeric);
+  padding: 7px 11px 6px;
+  font-family: var(--f-sign), sans-serif;
+  font-size: 19px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.small {
+  font-size: 15px;
+}
+.text {
+  display: block;
+  transform: translateY(1px);
+}

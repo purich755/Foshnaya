@@ -1,0 +1,62 @@
+.ticker {
+  position: relative;
+  z-index: 5;
+  padding: clamp(28px, 4vw, 56px) 0;
+  margin: -6px 0;
+  overflow-x: clip;
+  background: var(--night);
+}
+.row {
+  background: var(--turmeric);
+  color: var(--night);
+  transform: rotate(-2deg) scale(1.04);
+  overflow: hidden;
+  border-block: 2px solid var(--night);
+}
+.row + .row {
+  margin-top: -2px;
+}
+.track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.run {
+  display: flex;
+  align-items: center;
+  flex: none;
+  padding-block: 14px;
+}
+.item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.55em;
+  padding-inline: 22px;
+  white-space: nowrap;
+  transition: color 0.2s;
+  cursor: default;
+}
+.vi {
+  font-weight: 700;
+  font-size: clamp(20px, 2.2vw, 30px);
+  letter-spacing: 0.02em;
+}
+.ru {
+  font-size: clamp(14px, 1.2vw, 17px);
+  opacity: 0.85;
+}
+.item:hover {
+  color: var(--chili);
+}
+.diamond {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  background: var(--chili);
+  transform: rotate(45deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .row {
+    overflow-x: auto;
+  }
+}

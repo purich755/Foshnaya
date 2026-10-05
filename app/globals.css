@@ -1,0 +1,328 @@
+/* ───────── Токены ─────────
+   Охра и бирюза сверены с фото зала: стены — рыжая фанера под тёплой лампой,
+   стойка обшита бледно-голубыми панелями (на фото 2018 — мятная плитка).
+   Бирюза плитки заменила «кинзу» как второй акцент. */
+:root {
+  --night: #15110e;
+  --soot: #211a15;
+  --soot-2: #2a211a;
+  --ochre: #bd7c3c;
+  --ochre-d: #8c5426;
+  --ochre-l: #d39a55;
+  --broth: #e8a33d;
+  --chili: #d3261c;
+  --chili-btn: #b81d14; /* кнопки: светлый текст проходит AA */
+  --turmeric: #f4c21b;
+  --rice: #f4eada;
+  --rice-2: #e9dcc6;
+  --soy: #2b1d14;
+  --tile: #86bfc6;
+  --tile-d: #4e8f98;
+  --phosphor: #8cffb8;
+
+  --ink-dim: rgba(244, 234, 218, 0.72);
+  --ink-faint: rgba(244, 234, 218, 0.5);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --gutter: clamp(16px, 4vw, 56px);
+  --maxw: 1360px;
+  --header-h: 64px;
+  color-scheme: dark;
+}
+
+/* декоративные шрифты подключаются после load (data-fonts ставит скрипт в <head>):
+   до этого переменные next/font перекрыты системными, и файлы не попадают в критический путь */
+html:not([data-fonts]) body {
+  --f-viet: system-ui, sans-serif;
+  --f-hand: 'Segoe Print', 'Comic Sans MS', cursive;
+}
+
+/* ───────── База ───────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+/* Lenis: без scroll-behavior:smooth — иначе гонка двух плавностей */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--night);
+  color: var(--rice);
+  font-family: var(--f-text), system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+@media (min-width: 1100px) {
+  body {
+    font-size: 18px;
+  }
+}
+/* плёночное зерно на всю страницу */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.4 -.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img,
+svg,
+canvas,
+video {
+  display: block;
+  max-width: 100%;
+}
+img {
+  height: auto;
+  -webkit-user-drag: none;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+[hidden] {
+  display: none !important;
+}
+::selection {
+  background: var(--turmeric);
+  color: var(--night);
+}
+:focus-visible {
+  outline: 2px solid var(--turmeric);
+  outline-offset: 3px;
+}
+section[id] {
+  scroll-margin-top: 64px;
+}
+
+/* ───────── Утилиты ───────── */
+.wrap {
+  width: 100%;
+  max-width: calc(var(--maxw) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.skip {
+  position: fixed;
+  left: 12px;
+  top: -60px;
+  z-index: 200;
+  padding: 10px 16px;
+  background: var(--turmeric);
+  color: var(--night);
+  font-weight: 600;
+}
+.skip:focus {
+  top: 12px;
+}
+
+.f-sign {
+  font-family: var(--f-sign), var(--f-text), sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.95;
+}
+.f-mono {
+  font-family: var(--f-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.f-viet {
+  font-family: var(--f-viet), var(--f-text), sans-serif;
+}
+.f-hand {
+  font-family: var(--f-hand), cursive;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* вывеска — плотная плашка, углы 0 */
+.sign {
+  display: inline-block;
+  padding: 0.28em 0.5em 0.22em;
+  font-family: var(--f-sign), sans-serif;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 0;
+  background: var(--chili);
+  color: var(--turmeric);
+}
+.sign--y {
+  background: var(--turmeric);
+  color: var(--night);
+}
+.sign--v {
+  writing-mode: vertical-rl;
+  padding: 0.5em 0.24em;
+}
+
+/* кнопки */
+.btn {
+  --b: var(--chili-btn);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: 52px;
+  padding: 0.85em 1.5em;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.1;
+  border-radius: 0;
+  background: var(--b);
+  color: var(--rice);
+  border: 2px solid var(--b);
+  transition:
+    transform 0.35s var(--ease),
+    background-color 0.25s,
+    color 0.25s,
+    border-color 0.25s;
+  white-space: nowrap;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  background: #d1241a;
+  border-color: #d1241a;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--rice);
+  border-color: rgba(244, 234, 218, 0.55);
+}
+.btn--ghost:hover {
+  background: var(--rice);
+  color: var(--night);
+  border-color: var(--rice);
+}
+.btn--dark {
+  background: var(--night);
+  border-color: var(--night);
+  color: var(--rice);
+}
+.btn--dark:hover {
+  background: var(--soy);
+  border-color: var(--soy);
+}
+.btn--ink {
+  background: transparent;
+  color: var(--soy);
+  border-color: rgba(43, 29, 20, 0.6);
+}
+.btn--ink:hover {
+  background: var(--soy);
+  color: var(--rice);
+  border-color: var(--soy);
+}
+.btn .arr {
+  transition: transform 0.35s var(--ease);
+}
+.btn:hover .arr {
+  transform: translateX(4px);
+}
+
+/* секции ниже пин-сцены: браузер не считает стили и раскладку, пока они далеко от экрана.
+   auto — после первой отрисовки запоминается реальная высота */
+.cv {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1000px;
+}
+
+/* reveal: класс is-in ставит RevealObserver */
+html[data-js] [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.75s var(--ease),
+    transform 0.75s var(--ease);
+  transition-delay: var(--rd, 0ms);
+}
+html[data-js] [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* лампа: тёплый конус сверху тёмных секций */
+.lamp {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 70%;
+  pointer-events: none;
+  background: radial-gradient(60% 70% at 50% 0%, rgba(232, 163, 61, 0.14), rgba(232, 163, 61, 0) 70%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-js] [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

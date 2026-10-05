@@ -1,0 +1,40 @@
+/* Бумага рисуется псевдоэлементом с неровным обрезом, тень — фильтром по форме,
+   поэтому скотч, торчащий за край, не обрезается. */
+.tag {
+  --paper: var(--rice);
+  position: relative;
+  z-index: 0;
+  color: var(--soy);
+  padding: 18px 18px 16px;
+  transform: rotate(var(--r));
+  filter: drop-shadow(0 9px 12px rgba(21, 17, 14, 0.38)) drop-shadow(0 1px 2px rgba(21, 17, 14, 0.25));
+}
+.tag::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--paper);
+  clip-path: polygon(0.6% 1.2%, 38% 0, 71% 0.9%, 99.4% 0, 100% 48%, 99.2% 99.1%, 62% 100%, 24% 99.3%, 0 100%, 0.5% 52%);
+}
+.tape {
+  position: absolute;
+  left: 50%;
+  top: -11px;
+  width: 74px;
+  height: 22px;
+  margin-left: -37px;
+  transform: rotate(var(--tr));
+  transform-origin: 50% 50%;
+  background: rgba(244, 234, 218, 0.6);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  /* зубчатые края скотча */
+  -webkit-mask:
+    conic-gradient(from -45deg at left, #0000 25%, #000 0) left / 51% 6px repeat-y,
+    conic-gradient(from 135deg at right, #0000 25%, #000 0) right / 51% 6px repeat-y;
+  mask:
+    conic-gradient(from -45deg at left, #0000 25%, #000 0) left / 51% 6px repeat-y,
+    conic-gradient(from 135deg at right, #0000 25%, #000 0) right / 51% 6px repeat-y;
+  z-index: 2;
+  transition: transform 0.4s var(--ease);
+}

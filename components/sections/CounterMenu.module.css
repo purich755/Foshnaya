@@ -1,0 +1,212 @@
+.section {
+  position: relative;
+  background: var(--ochre);
+  color: var(--soy);
+  padding: clamp(84px, 10vw, 140px) 0 clamp(70px, 8vw, 110px);
+  overflow-x: clip;
+}
+.inner {
+  position: relative;
+}
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px 40px;
+  margin-bottom: clamp(44px, 6vw, 80px);
+}
+.sign {
+  font-size: clamp(30px, 5vw, 76px);
+  margin: 0;
+}
+.lead {
+  max-width: 34ch;
+}
+
+.wall {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 56px 28px;
+  align-items: start;
+}
+.c0 { grid-column: 1 / span 5; }
+.c1 { grid-column: 6 / span 3; margin-top: 80px; }
+.c2 { grid-column: 9 / span 4; margin-top: -10px; }
+.c3 { grid-column: 2 / span 4; margin-top: 10px; }
+.c4 { grid-column: 7 / span 4; margin-top: -60px; }
+
+.peel {
+  position: relative;
+  transform: rotate(var(--t));
+  transition: transform 0.5s var(--ease);
+}
+.card:hover .peel {
+  transform: rotate(0deg) translateY(-8px);
+}
+.frame {
+  position: relative;
+  background: var(--rice);
+  padding: 10px;
+  box-shadow: 0 18px 28px -16px rgba(43, 29, 20, 0.65);
+  transition: box-shadow 0.5s var(--ease);
+}
+.card:hover .frame {
+  box-shadow: 0 30px 40px -18px rgba(43, 29, 20, 0.75);
+}
+.img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 2px;
+}
+.c3 .img,
+.c4 .img {
+  aspect-ratio: 4 / 5;
+}
+
+/* карточка без фото: ценник-вывеска */
+.typo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  aspect-ratio: 4 / 5;
+  padding: 22px 18px;
+  background: var(--soot);
+  color: var(--rice);
+  border: 10px solid var(--rice);
+}
+.typoKicker {
+  font-family: var(--f-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--broth);
+  margin-bottom: 10px;
+}
+.typoWord {
+  font-family: var(--f-sign), sans-serif;
+  font-size: clamp(38px, 4.4vw, 64px);
+  line-height: 0.92;
+  text-transform: uppercase;
+  color: var(--turmeric);
+}
+.typoWord:nth-child(3) {
+  color: var(--rice);
+  padding-left: 0.5em;
+}
+.typoNote {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+
+.tag {
+  position: relative;
+  margin: -34px 14px 0 auto;
+  width: min(88%, 330px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.c1 .tag,
+.c3 .tag {
+  margin-left: 14px;
+  margin-right: auto;
+}
+.tag > span[aria-hidden]:first-child {
+  transition: transform 0.4s var(--ease);
+}
+.card:hover .tag > span[aria-hidden]:first-child {
+  transform: rotate(var(--tr)) skewX(-14deg) translateY(-4px) scaleY(1.1);
+}
+.name {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.2;
+}
+.vi {
+  font-weight: 500;
+  font-size: 14px;
+  color: #8a4b1c;
+}
+.text {
+  font-size: 15px;
+  line-height: 1.4;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(43, 29, 20, 0.35);
+}
+.row :global(.f-mono) {
+  font-size: 13px;
+}
+.price {
+  margin-left: auto;
+  font-family: var(--f-mono), monospace;
+  font-weight: 500;
+  font-size: 22px;
+}
+.hand {
+  position: absolute;
+  right: -10px;
+  bottom: -38px;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--soy);
+  transform: rotate(-5deg);
+  white-space: nowrap;
+}
+.fine {
+  margin-top: clamp(60px, 7vw, 90px);
+  font-size: 13px;
+}
+
+@media (max-width: 1000px) {
+  .wall {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 56px 24px;
+  }
+  .c0, .c1, .c2, .c3, .c4 {
+    grid-column: auto;
+    margin-top: 0;
+  }
+  .c1 { margin-top: 40px; }
+  .c3 { margin-top: -20px; }
+}
+@media (max-width: 640px) {
+  .wall {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    margin-inline: calc(var(--gutter) * -1);
+    padding: 20px var(--gutter) 56px;
+    scrollbar-width: none;
+  }
+  .wall::-webkit-scrollbar {
+    display: none;
+  }
+  .card {
+    flex: none;
+    width: 76vw;
+    scroll-snap-align: start;
+    margin-top: 0 !important;
+  }
+  .img,
+  .c3 .img,
+  .c4 .img,
+  .typo {
+    aspect-ratio: 4 / 4.4;
+  }
+  .hand {
+    right: 0;
+    font-size: 23px;
+  }
+}

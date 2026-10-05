@@ -1,0 +1,22 @@
+html[data-js] .sign {
+  opacity: 0.18;
+}
+.on {
+  animation: flick 0.36s steps(1, end) forwards;
+}
+@keyframes flick {
+  0% { opacity: 0.1; }
+  16% { opacity: 1; }
+  32% { opacity: 0.3; }
+  52% { opacity: 1; }
+  70% { opacity: 0.6; }
+  86%, 100% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-js] .sign {
+    opacity: 1;
+  }
+  .on {
+    animation: none;
+  }
+}

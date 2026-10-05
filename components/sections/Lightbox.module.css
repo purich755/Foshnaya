@@ -1,0 +1,62 @@
+.box {
+  position: fixed;
+  inset: 0;
+  z-index: 160;
+  background: rgba(21, 17, 14, 0.94);
+  touch-action: pan-y;
+}
+.frame {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 4px;
+  transform-origin: 50% 50%;
+}
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 var(--gutter);
+  font-family: var(--f-mono), monospace;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rice);
+}
+.count {
+  color: var(--turmeric);
+}
+.label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink-dim);
+}
+.btns {
+  display: flex;
+  gap: 8px;
+}
+.btns button {
+  width: 46px;
+  height: 46px;
+  border: 1.5px solid rgba(244, 234, 218, 0.35);
+  font-size: 18px;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+.btns button:hover {
+  background: var(--rice);
+  color: var(--night);
+}
