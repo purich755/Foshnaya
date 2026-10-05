@@ -6,3 +6,5 @@ raw
 .vercel
 .env*
 out
+
+.vercel

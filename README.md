@@ -8,7 +8,7 @@ npm run build && npm start  # прод на http://localhost:8415
 ```
 
 **Живая версия:** https://purich755.github.io/Foshnaya/ — GitHub Pages, собирается workflow `.github/workflows/pages.yml` при каждом пуше в `main` (статический экспорт с `GITHUB_PAGES=true`, basePath `/Foshnaya`).
-На Vercel проект деплоится без настроек — обычная сборка Next, без basePath. Страница помечена `noindex`: это демо для показа владельцу.
+На Vercel проект деплоится без настроек — обычная сборка Next, без basePath. Статика в корень домена: `STATIC_EXPORT=true npm run build` → папка `out/`. Страница помечена `noindex`: это демо для показа владельцу.
 
 ## Стек
 
